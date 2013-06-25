@@ -9,6 +9,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+var ArticleProvider = require('./articleprovider-memory').ArticleProvider;
+
 var app = express();
 
 // all environments
@@ -28,7 +30,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+var articleProvider = new ArticleProvider();
+
+app.get('/', function(req, res) {
+	articleProvider.findAll(function(error, docs){
+		res.send(docs);
+	});
+});
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

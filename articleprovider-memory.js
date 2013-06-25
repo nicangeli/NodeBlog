@@ -5,7 +5,7 @@ ArticleProvider.prototype.dummyData = [];
 
 ArticleProvider.prototype.findAll = function(callback) {
 	callback(null, this.dummyData);
-});
+};
 
 ArticleProvider.prototype.findById = function(id, callback) {
 	var result = null;
@@ -16,7 +16,7 @@ ArticleProvider.prototype.findById = function(id, callback) {
 		}
 		callback(null, result);
 	}
-});
+};
 
 ArticleProvider.prototype.save = function(articles, callback) {
 	var article = null;
@@ -28,7 +28,7 @@ ArticleProvider.prototype.save = function(articles, callback) {
 		article._id = articleCounter++;
 		article.created_at = new Date();
 
-		if(article.comments == 'undefined')
+		if(article.comments === undefined)
 			article.comments = [];
 		
 		for(var j = 0; j < article.comments.length; j++) {
@@ -39,7 +39,7 @@ ArticleProvider.prototype.save = function(articles, callback) {
 	callback(null, articles);
 };
 
-new ArticleProvider.save([
+new ArticleProvider().save([
 	{title: 'Post one.', body: 'Body one.', comments:[{author: 'Bob', comment: 'I love it'}, {author: 'Dave', comment: 'This is rubbish'}]},
 	{title: 'Post two', body: 'Body two.'},
 	{title: 'Post three.', body: 'Body three.'}
