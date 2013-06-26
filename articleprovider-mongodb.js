@@ -17,7 +17,7 @@ ArticleProvider.prototype.getCollection = function(callback) {
 };
 
 ArticleProvider.prototype.findAll = function(callback) {
-	this.getCollection(function(error, article_collection)) {
+	this.getCollection(function(error, article_collection) {
 		if(error) callback(error);
 		else {
 			article_collection.find().toArray(function(error, results) {
@@ -27,7 +27,7 @@ ArticleProvider.prototype.findAll = function(callback) {
 				}
 			});
 		}
-	};
+	});
 };
 
 ArticleProvider.prototype.findById = function(id, callback) {
