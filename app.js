@@ -34,9 +34,13 @@ var articleProvider = new ArticleProvider();
 
 app.get('/', function(req, res) {
 	articleProvider.findAll(function(error, docs){
-		res.send(docs);
-	});
+		res.render('index.jade', {
+				title: 'Blog',
+				articles: docs
+		});
+	})
 });
+
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
